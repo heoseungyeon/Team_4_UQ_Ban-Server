@@ -81,6 +81,16 @@ public class UserProvider {
         }
 
     }
+    /**
+     * get category list
+     */
+    public GetCategory getCategory(int userId) throws BaseException{
+        try{
+            return userDao.getCategory(userId);
+        } catch (Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 
     /**
      * check logics

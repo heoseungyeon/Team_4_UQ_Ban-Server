@@ -11,6 +11,8 @@ public enum BaseResponseStatus {
      * 1000 : 요청 성공
      */
     SUCCESS(true, 1000, "요청에 성공하였습니다."),
+    SUCCESS_ADD(true, 1001, "카테고리 추가에 성공했습니다."),
+    SUCCESS_UPP(true, 1002, "카테고리 수에 성공했습니다."),
 
 
     /**
