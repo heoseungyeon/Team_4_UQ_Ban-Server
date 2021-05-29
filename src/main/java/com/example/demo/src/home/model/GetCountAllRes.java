@@ -2,12 +2,13 @@ package com.example.demo.src.home.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
-public class PostCountReq {
-    private int categoryId;
+public class GetCountAllRes {
+    private int userIdx;
+    private String userName;
+    private int counts;
 }

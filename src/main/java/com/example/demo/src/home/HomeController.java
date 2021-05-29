@@ -84,6 +84,18 @@ public class HomeController {
 
     }
 
+    @ResponseBody
+    @GetMapping("/count") // (GET) 127.0.0.1:9000/app/users/:userIdx
+    public BaseResponse<List<GetCountAllRes>> getCount() {
+        try{
+            List<GetCountAllRes> getCountAllRes = homeProvider.getCountAll();
+            return new BaseResponse<>(getCountAllRes);
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+
+    }
+
     /**
      * 카운트 추가 API
      * [POST] /home/count
@@ -91,10 +103,11 @@ public class HomeController {
      */
     // Body
     @ResponseBody
-    @PostMapping("/count")
-    public BaseResponse<PostCountRes> createCount(@RequestBody PostCountReq postCountReq) {
+    @PostMapping("/count/{categoryId}")
+    public BaseResponse<PostCountRes> createCount(@PathVariable("categoryId") int categoryId) {
         try{
-            PostCountRes postCountRes = homeService.createCount(postCountReq);
+            System.out.println("categoryId = " + categoryId);
+            PostCountRes postCountRes = homeService.createCount(categoryId);
             return new BaseResponse<>(postCountRes);
         } catch(BaseException exception){
             return new BaseResponse<>((exception.getStatus()));

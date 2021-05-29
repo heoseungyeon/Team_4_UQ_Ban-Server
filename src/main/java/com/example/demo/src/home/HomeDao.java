@@ -1,9 +1,6 @@
 package com.example.demo.src.home;
 
-import com.example.demo.src.home.model.GetCountRes;
-import com.example.demo.src.home.model.GetQuoteRes;
-import com.example.demo.src.home.model.GetUserCategoryRes;
-import com.example.demo.src.home.model.PostCountReq;
+import com.example.demo.src.home.model.*;
 import com.example.demo.src.user.model.GetUserRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -43,9 +40,22 @@ public class HomeDao {
                         getCountParams));
     }
 
-    public int createCount(int userIdx,PostCountReq postCountReq) {
+    public List<GetCountAllRes> getCountAll(){
+        String getCountQuery = "select userId,COUNT(userId) AS cnt from Count group by cnt";
+        return this.jdbcTemplate.query(getCountQuery,
+                (rs,rowNum) -> new GetCountAllRes(
+                        rs.getInt("userIdx"),
+                        rs.getString("userName"),
+                        rs.getInt("counts")
+        ));
+    }
+
+
+    public int createCount(int userIdx,int categoryId) {
+        System.out.println("userIdx = " + userIdx);
+        System.out.println("categoryId = " + categoryId);
         String createCountQuery = "insert into Count (userId, categoryId) VALUES (?,?)";
-        Object[] createUserParams = new Object[]{userIdx,postCountReq.getCategoryId()};
+        Object[] createUserParams = new Object[]{userIdx,categoryId};
         this.jdbcTemplate.update(createCountQuery, createUserParams);
 
         String lastInserIdQuery = "select last_insert_id()";

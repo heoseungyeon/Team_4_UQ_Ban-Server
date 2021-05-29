@@ -36,10 +36,10 @@ public class HomeService {
         this.jwtService = jwtService;
 
     }
-    public PostCountRes createCount(PostCountReq postCountReq) throws BaseException {
+    public PostCountRes createCount(int categoryId) throws BaseException {
         try{
             int userIdx = jwtService.getUserIdx();
-            int countIdx = homeDao.createCount(userIdx,postCountReq);
+            int countIdx = homeDao.createCount(userIdx,categoryId);
 
             return new PostCountRes(countIdx);
         } catch (Exception exception) {

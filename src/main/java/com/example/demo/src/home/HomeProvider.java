@@ -1,6 +1,7 @@
 package com.example.demo.src.home;
 
 import com.example.demo.config.BaseException;
+import com.example.demo.src.home.model.GetCountAllRes;
 import com.example.demo.src.home.model.GetCountRes;
 import com.example.demo.src.home.model.GetQuoteRes;
 import com.example.demo.src.home.model.GetUserCategoryRes;
@@ -55,6 +56,15 @@ public class HomeProvider {
             int userIdx = jwtService.getUserIdx();
             GetCountRes getCountRes = homeDao.getCount(userIdx,categoryId);
             return getCountRes;
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public List<GetCountAllRes> getCountAll() throws BaseException {
+        try {
+            List<GetCountAllRes> getCountAllRes = homeDao.getCountAll();
+            return getCountAllRes;
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }
