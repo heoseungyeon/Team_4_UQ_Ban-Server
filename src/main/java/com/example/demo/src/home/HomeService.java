@@ -40,7 +40,7 @@ public class HomeService {
         try{
             int countIdx = homeDao.createCount(postCountReq);
 
-            return new PostUserRes(countIdx);
+            return new PostCountRes(countIdx);
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }

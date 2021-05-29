@@ -8,4 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class GetQuoteRes {
+    private int quotesId;
+    private String content;
+
 }

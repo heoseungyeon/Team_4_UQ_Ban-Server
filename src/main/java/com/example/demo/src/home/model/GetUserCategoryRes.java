@@ -8,4 +8,5 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class GetUserCategoryRes {
+    private int categoryId;
 }

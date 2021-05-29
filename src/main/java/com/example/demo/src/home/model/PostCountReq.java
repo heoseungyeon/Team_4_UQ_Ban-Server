@@ -8,4 +8,5 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class PostCountReq {
+    private int categoryId;
 }

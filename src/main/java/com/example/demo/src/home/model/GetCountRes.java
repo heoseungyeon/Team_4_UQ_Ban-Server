@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class GetCountRes {
-
+    private int counts;
 }
