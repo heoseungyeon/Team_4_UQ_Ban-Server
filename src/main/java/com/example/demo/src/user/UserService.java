@@ -83,4 +83,16 @@ public class UserService {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
+    /**
+     * update Category
+     */
+    public void updateUserCategory(int userId, int[] cateList) throws BaseException {
+        try{
+            userDao.deleteUserCategory(userId);
+            createUserCategory(userId, cateList);
+        } catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }
