@@ -30,15 +30,15 @@ public class HomeProvider {
         this.jwtService = jwtService;
     }
 
-    public List<GetUserCategoryRes> getUserCatoeries() throws BaseException {
-        try{
-            List<GetUserCategoryRes> getUserCategoryRes = homeDao.getUserCategories();
-            return getUserCategoryRes;
-        }
-        catch (Exception exception) {
-            throw new BaseException(DATABASE_ERROR);
-        }
-    }
+//    public List<GetUserCategoryRes> getUserCatoeries() throws BaseException {
+//        try{
+//            List<GetUserCategoryRes> getUserCategoryRes = homeDao.getUserCategories();
+//            return getUserCategoryRes;
+//        }
+//        catch (Exception exception) {
+//            throw new BaseException(DATABASE_ERROR);
+//        }
+//    }
 
     public List<GetQuoteRes> getQuotes() throws BaseException {
         try{
