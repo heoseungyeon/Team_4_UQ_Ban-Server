@@ -41,13 +41,13 @@ public class HomeDao {
     }
 
     public List<GetCountAllRes> getCountAll(){
-        String getCountQuery = "select userId,COUNT(userId) AS cnt from Count group by cnt";
+        String getCountQuery = "select a.userId As userId,b.nickname As nickname,COUNT(a.userId) As cnt from Count a LEFT JOIN User b ON a.userId = b.userId group by a.userId order by cnt desc";
         return this.jdbcTemplate.query(getCountQuery,
                 (rs,rowNum) -> new GetCountAllRes(
-                        rs.getInt("userIdx"),
-                        rs.getString("userName"),
-                        rs.getInt("counts")
-        ));
+                        rs.getInt("userId"),
+                        rs.getString("nickName"),
+                        rs.getInt("cnt")
+                ));
     }
 
 
@@ -60,5 +60,14 @@ public class HomeDao {
 
         String lastInserIdQuery = "select last_insert_id()";
         return this.jdbcTemplate.queryForObject(lastInserIdQuery,int.class);
+    }
+
+    public List<GetCategoryAllRes> getCategoryAll() {
+        String getQuotesQuery = "select categoryId, name from Category";
+        return this.jdbcTemplate.query(getQuotesQuery,
+                (rs,rowNum) -> new GetCategoryAllRes(
+                        rs.getInt("categoryId"),
+                        rs.getString("name"))
+        );
     }
 }

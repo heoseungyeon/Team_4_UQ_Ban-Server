@@ -46,6 +46,22 @@ public class HomeController {
             return new BaseResponse<>((exception.getStatus()));
         }
     }
+
+    /**
+     * 전체 카테고 조 회  API
+     * [GET] /home/category
+     * @return BaseResponse<List<GetQuoteRes>>
+     */
+    @ResponseBody
+    @GetMapping("/category") // (GET) 127.0.0.1:9000/app/users
+    public BaseResponse<List<GetCategoryAllRes>> getCategory() {
+        try{
+            List<GetCategoryAllRes> getCategoryAllRes = homeProvider.getCategoryAll();
+            return new BaseResponse<>(getCategoryAllRes);
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
 //    /**
 //     * 유저가 현재 설정한 카테고리 조회 API
 //     * [GET] /home/usercategory/:userId
@@ -89,6 +105,7 @@ public class HomeController {
     public BaseResponse<List<GetCountAllRes>> getCount() {
         try{
             List<GetCountAllRes> getCountAllRes = homeProvider.getCountAll();
+            System.out.println("getCountAllRes = " + getCountAllRes);
             return new BaseResponse<>(getCountAllRes);
         } catch(BaseException exception){
             return new BaseResponse<>((exception.getStatus()));

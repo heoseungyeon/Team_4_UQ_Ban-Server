@@ -1,10 +1,7 @@
 package com.example.demo.src.home;
 
 import com.example.demo.config.BaseException;
-import com.example.demo.src.home.model.GetCountAllRes;
-import com.example.demo.src.home.model.GetCountRes;
-import com.example.demo.src.home.model.GetQuoteRes;
-import com.example.demo.src.home.model.GetUserCategoryRes;
+import com.example.demo.src.home.model.*;
 import com.example.demo.src.user.model.GetUserRes;
 import com.example.demo.utils.JwtService;
 import org.slf4j.Logger;
@@ -69,4 +66,15 @@ public class HomeProvider {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
+    public List<GetCategoryAllRes> getCategoryAll() throws BaseException {
+        try{
+            List<GetCategoryAllRes> getCategoryAllRes = homeDao.getCategoryAll();
+            return getCategoryAllRes;
+        }
+        catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
 }
