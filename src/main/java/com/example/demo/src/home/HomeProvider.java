@@ -52,7 +52,8 @@ public class HomeProvider {
 
     public GetCountRes getCountsByCategoryId(int categoryId) throws BaseException {
         try {
-            GetCountRes getCountRes = homeDao.getCount(categoryId);
+            int userIdx = jwtService.getUserIdx();
+            GetCountRes getCountRes = homeDao.getCount(userIdx,categoryId);
             return getCountRes;
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);

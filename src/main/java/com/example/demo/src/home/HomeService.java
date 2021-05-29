@@ -38,7 +38,8 @@ public class HomeService {
     }
     public PostCountRes createCount(PostCountReq postCountReq) throws BaseException {
         try{
-            int countIdx = homeDao.createCount(postCountReq);
+            int userIdx = jwtService.getUserIdx();
+            int countIdx = homeDao.createCount(userIdx,postCountReq);
 
             return new PostCountRes(countIdx);
         } catch (Exception exception) {
