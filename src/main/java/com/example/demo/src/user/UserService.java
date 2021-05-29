@@ -38,7 +38,7 @@ public class UserService {
     //POST
     public PostUserRes createUser(PostUserReq postUserReq) throws BaseException {
         //닉네임 중복
-        if(userProvider.checkNickname(postUserReq.getNickname())==1){
+        if(userProvider.checkNickname(postUserReq.getNickName())==1){
             throw new BaseException(PASSWORD_ENCRYPTION_ERROR);
         }
 
@@ -65,19 +65,6 @@ public class UserService {
             int result = userDao.modifyUserName(patchUserReq);
             if(result == 0){
                 throw new BaseException(MODIFY_FAIL_USERNAME);
-            }
-        } catch(Exception exception){
-            throw new BaseException(DATABASE_ERROR);
-        }
-    }
-
-    /**
-     * Create Category
-     */
-    public void createUserCategory(int userId, int[] cateList) throws BaseException {
-        try{
-            for(int i=0; i < cateList.length; i++) {
-                userDao.addOneCategory(userId, cateList[i]);
             }
         } catch(Exception exception){
             throw new BaseException(DATABASE_ERROR);

@@ -60,7 +60,7 @@ public class UserDao {
 
     public int createUser(PostUserReq postUserReq){
         String createUserQuery = "insert into User (nickname, password) VALUES (?,?)";
-        Object[] createUserParams = new Object[]{postUserReq.getNickname(), postUserReq.getPassword()};
+        Object[] createUserParams = new Object[]{postUserReq.getNickName(), postUserReq.getPassword()};
         this.jdbcTemplate.update(createUserQuery, createUserParams);
 
         String lastInserIdQuery = "select last_insert_id()";
@@ -70,6 +70,7 @@ public class UserDao {
     public int modifyUserName(PatchUserReq patchUserReq){
         String modifyUserNameQuery = "update UserInfo set userName = ? where userIdx = ? ";
         Object[] modifyUserNameParams = new Object[]{patchUserReq.getUserName(), patchUserReq.getUserIdx()};
+
         return this.jdbcTemplate.update(modifyUserNameQuery,modifyUserNameParams);
     }
 
@@ -90,14 +91,6 @@ public class UserDao {
 
     }
 
-    /**
-     * add single category
-     */
-    public void addOneCategory(int userId, int cateNum) {
-        String query = "insert into UserCategory(userId, categoryId) VALUES (?,?)";
-        Object[] modifyUserNameParams = new Object[]{userId,cateNum};
-        this.jdbcTemplate.update(query, modifyUserNameParams);
-    }
     /**
      *
      * @param email

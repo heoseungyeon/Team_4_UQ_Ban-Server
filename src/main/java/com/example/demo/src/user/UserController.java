@@ -16,7 +16,7 @@ import static com.example.demo.config.BaseResponseStatus.*;
 import static com.example.demo.utils.ValidationRegex.isRegexEmail;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/app/users")
 public class UserController {
     final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -139,20 +139,5 @@ public class UserController {
         }
     }
 
-    /**
-     * users/category
-     */
-    @ResponseBody
-    @PostMapping("/category")
-    public BaseResponse createUserCategory(@RequestBody GetCategory getCategory){
-        try{
-            //userIdx
-            int userIdxByJwt = jwtService.getUserIdx();
-            int[] cateList = getCategory.getCateList();
-            userService.createUserCategory(userIdxByJwt, cateList);
-            return new BaseResponse<>(SUCCESS_ADD);
-        } catch (BaseException exception){
-            return new BaseResponse<>(exception.getStatus());
-        }
-    }
+
 }
