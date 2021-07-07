@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -91,12 +92,37 @@ public class UserDao {
     }
 
     /**
+     * get user category
+     */
+    public GetCategory getCategory(int userId) {
+        String query = "select C.categoryId, name from UserCategory " +
+                "    join Category C on UserCategory.categoryId = C.categoryId where userid =? and UserCategory.status = 'Y'";
+        List<Cate> cateList = this.jdbcTemplate.query(query,
+                (rs, rowNum) -> new Cate(
+                        rs.getInt("categoryId"),
+                        rs.getString("name")
+                ),
+                userId
+        );
+        return new GetCategory(cateList);
+    }
+
+    /**
      * add single category
      */
     public void addOneCategory(int userId, int cateNum) {
         String query = "insert into UserCategory(userId, categoryId) VALUES (?,?)";
         Object[] modifyUserNameParams = new Object[]{userId,cateNum};
         this.jdbcTemplate.update(query, modifyUserNameParams);
+    }
+
+    /** delete user category
+     *
+     */
+
+    public void deleteUserCategory(int userId) {
+        String query = "update UserCategory set status = 'N' where userId = ?";
+        this.jdbcTemplate.update(query, userId);
     }
     /**
      *
@@ -116,5 +142,8 @@ public class UserDao {
         return this.jdbcTemplate.queryForObject(query, int.class, nickname);
     }
 
-
+    public int checkCategory(int userId, int cateNum) {
+        String query = "select exists(select userId from UserCategory where userId = ? and categoryId = ? and status = 'Y')";
+        return this.jdbcTemplate.queryForObject(query, int.class, userId, cateNum);
+    }
 }

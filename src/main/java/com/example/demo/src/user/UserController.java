@@ -13,7 +13,6 @@ import java.util.List;
 
 
 import static com.example.demo.config.BaseResponseStatus.*;
-import static com.example.demo.utils.ValidationRegex.isRegexEmail;
 
 @RestController
 @RequestMapping("/users")
@@ -144,13 +143,45 @@ public class UserController {
      */
     @ResponseBody
     @PostMapping("/category")
-    public BaseResponse createUserCategory(@RequestBody GetCategory getCategory){
+    public BaseResponse createUserCategory(@RequestBody PostCategory postCategory){
         try{
             //userIdx
             int userIdxByJwt = jwtService.getUserIdx();
-            int[] cateList = getCategory.getCateList();
+            int[] cateList = postCategory.getCateList();
             userService.createUserCategory(userIdxByJwt, cateList);
             return new BaseResponse<>(SUCCESS_ADD);
+        } catch (BaseException exception){
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/category")
+    public BaseResponse<GetCategory> getUser() {
+        // Get Users
+        try{
+            //userIdx
+            int userIdxByJwt = jwtService.getUserIdx();
+            GetCategory getCategory = userProvider.getCategory(userIdxByJwt);
+            return new BaseResponse<>(getCategory);
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+
+    }
+
+    /**
+     * users/category
+     */
+    @ResponseBody
+    @PutMapping("/category")
+    public BaseResponse updateUserCategory(@RequestBody PostCategory postCategory){
+        try{
+            //userIdx
+            int userIdxByJwt = jwtService.getUserIdx();
+            int[] cateList = postCategory.getCateList();
+            userService.updateUserCategory(userIdxByJwt, cateList);
+            return new BaseResponse<>(SUCCESS_UPP);
         } catch (BaseException exception){
             return new BaseResponse<>(exception.getStatus());
         }

@@ -1,10 +1,8 @@
 server:
   port: 9000
-
 spring:
   application:
     name: demo
-
   datasource:
     platform: mysql
     url: jdbc:mysql://hackathon-makeus.cackxegznidw.ap-northeast-2.rds.amazonaws.com/dev?autoReconnect=true # 변경해주세요
