@@ -1,4 +1,5 @@
 # Team_4_UQ_Ban-Server
+- MakeUs 7th 해커톤 대회 최우수상 수상 
 
 ## 프로젝트 개요
 
