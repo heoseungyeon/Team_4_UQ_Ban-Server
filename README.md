@@ -1,5 +1,14 @@
-# Team_4_UQ_Ban-Server
-- MakeUs 7th 해커톤 대회 최우수상 수상 
+# 참참참
+
+|구분|내용|
+|---|-------|
+|한줄 소개|	각박한 세상속에서 살아가는 현대인들이 '참을 인'을 기록하는 iOS 앱|
+|진행 기간|	2021.05.29 - 2021.05.30|
+|주요 기술|	Java Spring MySQL iOS|
+|팀원 구성|	4명 (Server 개발 2명, Client 개발 1명, 디자이너 1명)|
+|전담 역할|	Server 개발 (Spring)|
+|🏆 수상	|MAKEUS 7TH 해커톤 대회 최우수상|
+|Github|	https://github.com/heoseungyeon/Team_4_UQ_Ban-Server|
 
 ## 프로젝트 개요
 
